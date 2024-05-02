@@ -1,13 +1,15 @@
 import classes from "./Button.module.css";
 
-console.log(classes)
+console.log(classes);
 
-export default function Button({ children, onClick, isActive }) {
+export default function Button({ children, isActive, ...props }) {
   return (
     <button
-      className={isActive ? `${classes.button} ${classes.active}` : classes.button}
+      {...props}
+      className={
+        isActive ? `${classes.button} ${classes.active}` : classes.button
+      }
       data-test={children}
-      onClick={onClick}
     >
       {children}
     </button>
