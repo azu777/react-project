@@ -9,11 +9,11 @@ export default function Header() {
   return (
     <header>
       <img src={logo} alt="Resut" width={50} height={50} />
-      <h3>University of Pisa</h3>
+      <h3 className="centered">University of Pisa</h3>
 
       <span data-testid="current-time">
         {" "}
-        Current time: {now.toLocaleTimeString()}
+        {now.toLocaleTimeString()}
       </span>
     </header>
   );
