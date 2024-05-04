@@ -1,10 +1,31 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Button from "./Button/Button";
+
+function StateVsRef() {
+  const input = useRef();
+  const [show, setShow] = useState();
+
+  function handleKeyDown(event) {
+    if (event.key === "Enter") setShow(true);
+  }
+
+  return (
+    <div>
+      <h3>Input value: {show && input.current.value}</h3>
+      <input
+        ref={input}
+        type="text"
+        onKeyDown={handleKeyDown}
+        className="control"
+      />
+    </div>
+  );
+}
 
 export default function FeedbackSection() {
   const [form, setForm] = useState({
     name: "",
-    hasError: true,
+    hasError: false,
     reason: "support",
   });
 
@@ -20,16 +41,14 @@ export default function FeedbackSection() {
     <section>
       <h3>Feedback</h3>
 
-      <form>
+      <form style={{ marginBottom: "1rem" }}>
         <label htmlFor="name">Your name</label>
         <input
           type="text"
           className="control"
-          value={form.name}
           style={{
             border: form.hasError ? "1px solid red" : null,
           }}
-          onChange={handleNameChange}
         />
 
         <label htmlFor="reason">Feadback reason</label>
@@ -52,6 +71,9 @@ export default function FeedbackSection() {
           Send
         </Button>
       </form>
+      <hr />
+
+      <StateVsRef />
     </section>
   );
 }
