@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <>
-      <Header />
+     <Header />
       <main>
         <IntroSection />
         <TabsSection active={tab} onChange={(current) => setTab(current)} />
